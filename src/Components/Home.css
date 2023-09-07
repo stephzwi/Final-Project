@@ -1,0 +1,7 @@
+.nav-bar-container {
+  display: inline-flex;
+}
+
+.nav-bar-item {
+  margin-right: 35px;
+}
