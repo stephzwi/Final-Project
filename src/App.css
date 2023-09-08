@@ -44,3 +44,7 @@
 .Product-Image {
   width: 30%;
 }
+li {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: aqua;
+}

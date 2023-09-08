@@ -1,0 +1,17 @@
+.nav-bar-container {
+  display: inline-flex;
+  position: relative;
+  bottom: 170px;
+  left: 330px;
+}
+
+.nav-bar-item {
+  margin-right: 35px;
+  color: black;
+}
+
+.splash {
+  background-image: url("/pngtree-aesthetic-plain-background-with-pastel-colors-picture-.jpg");
+  background-repeat: no-repeat;
+  width: 80pc;
+}

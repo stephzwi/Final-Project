@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
+
 export default function AllProducts() {
   const Url = "https://fakestoreapi.com/products";
 
@@ -16,38 +18,45 @@ export default function AllProducts() {
         setProducts(result);
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     }
     fetchProducts();
-    setLoading(false);
   }, []);
 
   return (
     <>
-      {loading ? (
-        <div>Page Loading</div>
-      ) : (
-        products.map((product) => {
-          return (
+      <Navbar />
+      <div>
+        {loading ? (
+          <div>Page Loading</div>
+        ) : (
+          products.map((product) => (
             <div
               onClick={() => navigate(`/products/${product.id}`)}
               key={product.id}
             >
-              <ul>
-                <li>{product.category}</li>
-                <li>{product.description}</li>
-                <img className="Product-Image" src={product.image} />
-                <li>{product.price}</li>
-                <li>
-                  {product.rating.count}
-                  {product.rating.rate}
-                </li>
-                <li>{product.title}</li>
-              </ul>
+              <div>
+                <ul>
+                  <li>{product.category}</li>
+                  <li>{product.description}</li>
+                  <img
+                    className="Product-Image"
+                    src={product.image}
+                    alt={product.title}
+                  />
+                  <li>{product.price}</li>
+                  <li>
+                    {product.rating.count} - {product.rating.rate}
+                  </li>
+                  <li>{product.title}</li>
+                </ul>
+              </div>
             </div>
-          );
-        })
-      )}
+          ))
+        )}
+      </div>
     </>
   );
 }

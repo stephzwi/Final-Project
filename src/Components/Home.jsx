@@ -1,16 +1,14 @@
-import AllProducts from "./AllProducts";
-import Login from "./Login";
-import { useParams } from "react-router-dom";
-import "./Home.css";
+import React from "react";
+import Navbar from "./Navbar";
 
-export default function Home() {
+function Home() {
   return (
-    <div className="nav-bar-container">
-      <div className="nav-bar-item">Home</div>
-      <div className="nav-bar-item">Login</div>
-      <div className="nav-bar-item">Register</div>
-      <div className="nav-bar-item">All Products</div>
-      <div className="nav-bar-item">My Cart </div>
-    </div>
+    <body className="splash">
+      <div>
+        <Navbar />
+        <h1>Welcome to the home Page</h1>
+      </div>
+    </body>
   );
 }
+export default Home;
