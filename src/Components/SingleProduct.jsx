@@ -13,7 +13,7 @@ export default function SingleProduct() {
         const response = await fetch(Url);
         const result = await response.json();
         console.log(result);
-        result.category = result.category.replace(/(?:^|\s)\w/g, (char) =>
+        result.category = result.category.replace(/(?:^|<=\s)\w/g, (char) =>
           char.toUpperCase()
         );
         console.log(result);

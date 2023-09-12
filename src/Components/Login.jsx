@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
+import Layout from "./Layout";
 
 const Url = "https://fakestoreapi.com/auth/login";
 
@@ -46,8 +47,9 @@ function Login() {
 
   return (
     <div>
-      <Navbar />
+      <Layout currentPage={Login} />
       <h1>Welcome to the Login Page</h1>
+
       <form>
         <label>
           Username:

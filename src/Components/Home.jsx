@@ -1,11 +1,12 @@
 import React from "react";
 import Navbar from "./Navbar";
+import Layout from "./Layout";
 
 function Home() {
   return (
     <body className="splash">
       <div>
-        <Navbar />
+        <Layout currentPage={Home} />
         <h1>Welcome to the home Page</h1>
       </div>
     </body>
