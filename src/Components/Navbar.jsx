@@ -1,10 +1,11 @@
 import React from "react";
 
-function Navbar({ currentPage }) {
-  const navbarClass = `navbar ${currentPage}`;
-  console.log("Anything");
+function Navbar() {
   return (
-    <nav className={navbarClass}>
+    <div className="navbar">
+      <div className="logo">
+        <img src="your_logo_url_here" alt="Logo" />
+      </div>
       <ul className="nav-bar-container">
         <li className="nav-bar-item">
           <a href="/" className="custom-link">
@@ -13,10 +14,9 @@ function Navbar({ currentPage }) {
         </li>
         <li className="nav-bar-item">
           <a href="/login" className="custom-link">
-            Login
+            Account
           </a>
         </li>
-        <li className="nav-bar-item">Register</li>
         <li className="nav-bar-item">
           <a href="/products" className="custom-link">
             All Products
@@ -28,7 +28,7 @@ function Navbar({ currentPage }) {
           </a>
         </li>
       </ul>
-    </nav>
+    </div>
   );
 }
 

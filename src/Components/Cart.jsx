@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import Layout from "./Layout";
 
-function Cart() {
+function Cart({ children, currentPage }) {
   return (
     <div>
       <Layout currentPage={Cart} />

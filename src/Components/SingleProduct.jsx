@@ -32,12 +32,10 @@ export default function SingleProduct() {
         <div>Page Loading</div>
       ) : (
         <ul>
-          <li>{product.category}</li>
-          <li>{product.description}</li>
+          <h4>{product.title}</h4>
+          <h4>{product.description}</h4>
           <img className="Product-Image" src={product.image} />
-          <li>{product.price}</li>
-
-          <li>{product.title}</li>
+          <h4>{product.price}</h4>
         </ul>
       )}
     </>

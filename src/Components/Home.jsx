@@ -5,11 +5,16 @@ import Layout from "./Layout";
 function Home() {
   return (
     <body className="splash">
-      <div>
+      <body>
+        <div className="blue"></div>
         <Layout currentPage={Home} />
-        <h1>Welcome to the home Page</h1>
+      </body>
+
+      <div className="Welcome">
+        <h1>Welcome to the home page</h1>
       </div>
     </body>
   );
 }
+
 export default Home;
