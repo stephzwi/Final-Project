@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const Url = "https://fakestoreapi.com/users"; // Corrected the API URL
+const Url = "https://fakestoreapi.com/users";
 
 function Users() {
-  const [users, setUsers] = useState([]); // Initialize state to hold user data
+  const [users, setUsers] = useState([]);
 
-  // Use the useEffect hook to fetch user data when the component mounts
   useEffect(() => {
     async function fetchUsers() {
       try {
@@ -19,20 +18,10 @@ function Users() {
     }
 
     fetchUsers(); // Call the fetchUsers function when the component mounts
-  }, []); // The empty dependency array [] ensures this effect runs once
+  }, []);
 
-  return (
-    <div>
-      <h2>User List</h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            {user.name} - {user.email}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  // This component does not render the users
+  return null;
 }
 
 export default Users;

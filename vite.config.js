@@ -9,4 +9,10 @@ export default defineConfig({
       usePolling: true,
     },
   },
+  build: {
+    rollupOptions: {
+      // Specify the entry point for your application
+      input: "src/App.jsx",
+    },
+  },
 });

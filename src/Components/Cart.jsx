@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
-import Layout from "./Layout";
 
-function Cart({ children, currentPage }) {
+function Cart({ currentPage }) {
+  // Sample cart items (replace with your actual cart data)
+  const [cartItems, setCartItems] = useState([
+    { id: 1, name: "Product 1", price: 10.99, quantity: 2 },
+    { id: 2, name: "Product 2", price: 19.99, quantity: 1 },
+  ]);
+
   return (
     <div>
-      <Layout currentPage={Cart} />
-      <h1>This is the Cart </h1>
+      <h1>Cart</h1>
+      <div>
+        {cartItems.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          <ul>
+            {cartItems.map((item) => (
+              <li key={item.id}>
+                <span>{item.name}</span>
+                <span>Price: ${item.price}</span>
+                <span>Quantity: {item.quantity}</span>
+                <button>Remove</button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
+
 export default Cart;

@@ -1,146 +1,64 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Layout from "./Layout";
-import LoginForm from "./Login";
-import RegisterForm from "./Register";
-import ForgotPasswordForm from "./ForgotPasswordForm";
+import { useState, useEffect } from "react";
 
-const loginUrl = "https://fakestoreapi.com/auth/login";
-const registerUrl = "https://fakestoreapi.com/auth/register";
-
-function Account() {
-  const [loginFormData, setLoginFormData] = useState({
-    username: "",
-    password: "",
-  });
-
-  const [registerFormData, setRegisterFormData] = useState({
-    registerUsername: "",
-    registerPassword: "",
-  });
-
-  const [loginResponseData, setLoginResponseData] = useState(null);
-  const [registerResponseData, setRegisterResponseData] = useState(null);
-
-  const [isRegistering, setIsRegistering] = useState(false);
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
-
-  const navigate = useNavigate();
+export default function Login({ setUser }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Your login and registration logic here...
-  }, [isRegistering, loginFormData, registerFormData]);
+    async function getAllUsers() {
+      const response = await fetch("https://fakestoreapi.com/users");
+      const users = await response.json();
+      const placeUsers= users.find(())
+    getAllUsers();
+  }, []);
 
-  const handleLoginInputChange = (event) => {
-    const { name, value } = event.target;
-    setLoginFormData({
-      ...loginFormData,
-      [name]: value,
-    });
-  };
 
-  const handleRegisterInputChange = (event) => {
-    const { name, value } = event.target;
-    setRegisterFormData({
-      ...registerFormData,
-      [name]: value,
-    });
-  };
 
-  const handleForgotPasswordClick = () => {
-    setShowForgotPassword(true);
-  };
-
-  const toggleRegisterForm = () => {
-    setIsRegistering(!isRegistering);
-  };
-
-  const handleLogin = (formData) => {
-    console.log(formData); // Add this line to log formData
-    // Send a login request with formData
-    fetch(loginUrl, {
-      method: "POST",
-      body: JSON.stringify({
-        username: formData.username,
-        password: formData.password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        // Handle the login response data here
-        setLoginResponseData(json);
-        if (json.success) {
-          navigate("/dashboard");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log(username, password);
+    try {
+      const response = await fetch("https://fakestoreapi.com/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
       });
-  };
-
-  const handleRegister = (formData) => {
-    // Send a registration request with formData
-    fetch(registerUrl, {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        // Handle the registration response data here
-        setRegisterResponseData(json);
-        if (json.success) {
-          navigate("/login");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+      console.log("The response", response);
+      const result = await response.json();
+      console.log("The Result", result, result.token);
+    } catch (error) {
+      setError(error);
+    }
+  }
 
   return (
     <div>
-      <Layout currentPage={Account} />
-      <h1>Welcome to the Login and Registration Page</h1>
-
-      {showForgotPassword ? (
-        <ForgotPasswordForm />
-      ) : (
-        <>
-          <div>
-            <h2>{isRegistering ? "Register" : "Login"}</h2>
-            {isRegistering ? (
-              <RegisterForm
-                onRegisterInputChange={handleRegisterInputChange}
-                onRegister={handleRegister}
-              />
-            ) : (
-              <LoginForm
-                onLoginInputChange={handleLoginInputChange}
-                onLogin={handleLogin}
-              />
-            )}
-            {isRegistering ? null : (
-              <button onClick={handleForgotPasswordClick}>
-                Forgot Password
-              </button>
-            )}
-          </div>
-
-          <div>
-            <button onClick={toggleRegisterForm}>
-              {isRegistering ? "Cancel" : "Register"}
-            </button>
-          </div>
-        </>
-      )}
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Username:{" "}
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+        <label>
+          Password:{" "}
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+        \<button>Submit</button>
+      </form>
     </div>
   );
 }
-
-export default Account;

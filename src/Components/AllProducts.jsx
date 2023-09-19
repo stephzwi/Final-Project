@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import Layout from "./Layout";
 
 export default function AllProducts() {
   const Url = "https://fakestoreapi.com/products";
@@ -87,7 +86,7 @@ export default function AllProducts() {
   return (
     <>
       <div>
-        <Layout currentPage={AllProducts} />
+        {/* <Layout currentPage={AllProducts} /> */}
         {loading ? (
           <div>Loading...</div>
         ) : (
