@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
 export default function AllProducts() {
-  const Url = "https://fakestoreapi.com/products";
+  const baseUrl = "https://fakestoreapi.com/";
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ export default function AllProducts() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await fetch(Url);
+        const response = await fetch(`${baseUrl}products`);
         const result = await response.json();
 
         // Initialize user ratings to match the initial product ratings
@@ -86,7 +86,6 @@ export default function AllProducts() {
   return (
     <>
       <div>
-        {/* <Layout currentPage={AllProducts} /> */}
         {loading ? (
           <div>Loading...</div>
         ) : (

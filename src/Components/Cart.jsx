@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 
-function Cart({ currentPage }) {
-  // Sample cart items (replace with your actual cart data)
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Product 1", price: 10.99, quantity: 2 },
-    { id: 2, name: "Product 2", price: 19.99, quantity: 1 },
-  ]);
-
+function Cart() {
   return (
     <div>
       <h1>Cart</h1>
